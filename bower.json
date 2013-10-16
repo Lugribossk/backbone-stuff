@@ -1,11 +1,16 @@
 {
   "name": "backbone-stuff",
   "version": "0.1.0",
-  "dependencies": {},
-  "devDependencies": {
-    "grunt": "~0.4.1",
-    "grunt-requirejs": "~0.3.2",
-    "grunt-contrib-jshint": "~0.6.0",
-    "requirejs": "~2.1.6"
+  "dependencies": {
+    "backbone": "1.0.0",
+    "backbone.marionette": "~1.1.0",
+    "backbone.stickit": "https://github.com/NYTimes/backbone.stickit.git#~0.6.3",
+    "backbone-associations": "~0.5.3",
+    "jquery": "~2.0.3",
+    "lodash": "~2.2.1",
+    "handlebars": "~1.0.0",
+    "requirejs": "~2.1.9",
+    "requirejs-text": "~2.0.10",
+    "requirejs-handlebars": "https://github.com/jfparadis/requirejs-handlebars.git"
   }
 }
