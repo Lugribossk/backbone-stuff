@@ -3,7 +3,7 @@ define(function (require) {
     var _ = require("underscore");
 
     var logLevel = 1,
-        loggers = [],
+        loggers = {},
         levels = {
             TRACE: 1,
             DEBUG: 2,
@@ -26,7 +26,7 @@ define(function (require) {
     function Logger(name) {
         this.name = name;
         this._createMethods();
-        loggers.push(this);
+        loggers[name] = this;
     }
 
     Logger.prototype._createMethods = function () {

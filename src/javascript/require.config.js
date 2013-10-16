@@ -13,10 +13,25 @@ require.config({
         text: "../../bower_components/requirejs-text/text",
         hbars: "../../bower_components/requirejs-handlebars/hbars"
     },
-    shims: {
+    shim: {
         backbone: {
             deps: ["jquery", "underscore"],
             exports: "Backbone"
+        },
+        marionette: {
+            deps: ["backbone", "underscore"],
+            exports: "Marionette"
+        },
+        stickit: {
+            deps: ["backbone", "jquery"],
+            exports: "Backbone.Stickit"
+        },
+        associations: {
+            deps: ["backbone", "underscore"],
+            exports: "Backbone.Associations"
+        },
+        Handlebars: {
+            exports: "Handlebars"
         }
     }
 });
