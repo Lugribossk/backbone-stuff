@@ -2,7 +2,8 @@ define(function (require) {
     "use strict";
     var _ = require("underscore");
 
-    var logLevel = 1,
+    var defaultLogLevel = 1,
+        specificLogLevels = {},
         loggers = {},
         levels = {
             TRACE: 1,
@@ -25,14 +26,14 @@ define(function (require) {
      */
     function Logger(name) {
         this.name = name;
-        this._createMethods();
+        this.setLogLevel(specificLogLevels[name] || defaultLogLevel);
         loggers[name] = this;
     }
 
-    Logger.prototype._createMethods = function () {
+    Logger.prototype.setLogLevel = function (level) {
         var scope = this;
         _.each(["error", "warn", "info", "debug", "trace"], function (method) {
-            if (window.console !== "undefined" && levels[method.toLocaleUpperCase()] >= logLevel) {
+            if (window.console !== "undefined" && levels[method.toLocaleUpperCase()] >= level) {
                 scope[method] = window.console[method]
                     .bind(window.console, "[" + scope.name + "]");
             } else {
@@ -42,18 +43,32 @@ define(function (require) {
     };
 
     Logger.initialize = function (config) {
-        if (config.Logger && config.Logger.logLevel) {
-            Logger.setLogLevel(config.Logger.logLevel);
+        if (config.Logger) {
+            _.each(config.Logger, function (value, key) {
+                if (key === "logLevel") {
+                    Logger.setAllLogLevels(value);
+                } else {
+                    Logger.setLogLevel(key, value);
+                }
+            });
         }
     };
 
-    Logger.setLogLevel = function (level) {
-        logLevel = level;
+    Logger.setAllLogLevels = function (level) {
+        defaultLogLevel = level;
         _.each(loggers, function (logger) {
-            logger._createMethods();
+            logger.setLogLevel(level);
         });
     };
-    
+
+    Logger.setLogLevel = function (name, level) {
+        specificLogLevels[name] = level;
+        var logger = loggers[name];
+        if (logger) {
+            logger.setLogLevel(level);
+        }
+    };
+
     Logger.LogLevel = levels;
 
     return Logger;
