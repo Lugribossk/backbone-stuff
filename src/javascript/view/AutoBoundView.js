@@ -17,7 +17,8 @@ define(function (require) {
                     var prefix = _.isString(autoBind) ? autoBind : "#";
 
                     _.each(scope.model.attributes, function (value, name) {
-                        var selector = prefix + name;
+                        var dashedName = name.replace(/([A-Z])/g, "-$1").toLowerCase();
+                        var selector = prefix + dashedName;
                         bindings[selector] = name;
                     });
 
