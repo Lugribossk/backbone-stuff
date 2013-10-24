@@ -11,6 +11,7 @@
     "handlebars": "~1.0.0",
     "requirejs": "~2.1.9",
     "requirejs-text": "~2.0.10",
-    "requirejs-handlebars": "https://github.com/jfparadis/requirejs-handlebars.git"
+    "requirejs-handlebars": "https://github.com/jfparadis/requirejs-handlebars.git",
+    "moment": "~2.3.1"
   }
 }

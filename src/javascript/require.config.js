@@ -10,6 +10,8 @@ require.config({
         underscore: "../../bower_components/lodash/lodash",
         Handlebars: "../../bower_components/handlebars/handlebars",
 
+        moment: "../../bower_components/moment/moment",
+
         text: "../../bower_components/requirejs-text/text",
         hbars: "../../bower_components/requirejs-handlebars/hbars"
     },
