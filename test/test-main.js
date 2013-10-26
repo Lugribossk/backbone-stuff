@@ -3,7 +3,7 @@
 (function () {
     "use strict";
 
-    // Override the baseUrl from require.config.js with Karma's base directory, plus the app from the files pattern.
+    // Override the baseUrl from require.config.js with Karma's base directory.
     require.config({
         baseUrl: "/base/src/javascript"
     });

@@ -95,8 +95,8 @@ module.exports = function (grunt) {
             ci: {
                 browsers: ["PhantomJS"],
                 singleRun: true,
-                // TODO Randomize the port
-                port: 9876,
+                // Randomize the port in case several CI jobs are running at the same time.
+                port: 10000 + Math.round(Math.random() * 1000),
                 preprocessors: {
                     "src/javascript/**/*.js": ["coverage"]
                 },

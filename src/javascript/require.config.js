@@ -7,7 +7,7 @@ require.config({
         associations: "../../bower_components/backbone-associations/backbone-associations",
 
         jquery: "../../bower_components/jquery/jquery",
-        underscore: "../../bower_components/lodash/lodash",
+        underscore: "../../bower_components/lodash/dist/lodash",
         Handlebars: "../../bower_components/handlebars/handlebars",
 
         moment: "../../bower_components/moment/moment",

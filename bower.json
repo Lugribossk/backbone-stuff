@@ -2,8 +2,8 @@
   "name": "backbone-stuff",
   "version": "0.1.0",
   "dependencies": {
-    "backbone": "1.0.0",
-    "backbone.marionette": "~1.1.0",
+    "backbone": "~1.1.0",
+    "backbone.marionette": "~1.2.0",
     "backbone.stickit": "https://github.com/NYTimes/backbone.stickit.git#~0.6.3",
     "backbone-associations": "~0.5.3",
     "jquery": "~2.0.3",
