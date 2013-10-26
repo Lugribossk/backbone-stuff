@@ -13,7 +13,11 @@ require.config({
         moment: "../../bower_components/moment/moment",
 
         text: "../../bower_components/requirejs-text/text",
-        hbars: "../../bower_components/requirejs-handlebars/hbars"
+        hbars: "../../bower_components/requirejs-handlebars/hbars",
+
+        test: "../../test/javascript",
+        "jasmine-jquery": "../../bower_components/jasmine-jquery/lib/jasmine-jquery",
+        "jasmine-as-promised": "../../bower_components/jasmine-as-promised/src/jasmine-as-promised"
     },
     shim: {
         backbone: {
@@ -34,6 +38,10 @@ require.config({
         },
         Handlebars: {
             exports: "Handlebars"
+        },
+
+        "jasmine-jquery": {
+            deps: ["jquery"]
         }
     }
 });
