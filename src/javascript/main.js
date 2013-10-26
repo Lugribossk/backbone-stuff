@@ -1,5 +1,5 @@
 /*global require*/
-require(["demo/demoApplication"], function (demoApplication) {
+require(["demo/DemoApplicationx"], function (DemoApplication) {
     "use strict";
-    demoApplication.start(window.appConfig);
+    DemoApplication.start(window.appConfig);
 });
