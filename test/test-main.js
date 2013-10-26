@@ -15,7 +15,8 @@
         return (/\/base\/test\/.*?Spec\.js$/).test(file);
     });
 
-    require(["jasmine-as-promised", "jasmine-jquery"].concat(allTests), function () {
+    // PhantomJS *still* doesn't have Function#bind(), so load an ES5 shim for that.
+    require(["jasmine-as-promised", "jasmine-jquery", "es5-shim"].concat(allTests), function () {
         // Start the test run.
         window.__karma__.start();
     });

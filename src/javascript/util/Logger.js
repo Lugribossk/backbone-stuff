@@ -1,8 +1,9 @@
+/*global console*/
 define(function (require) {
     "use strict";
     var _ = require("underscore");
 
-    var defaultLogLevel = 1,
+    var defaultLogLevel = 2,
         specificLogLevels = {},
         loggers = {},
         levels = {
@@ -25,6 +26,9 @@ define(function (require) {
      * @param {String} name
      */
     function Logger(name) {
+        if (loggers[name]) {
+            return loggers[name];
+        }
         this.name = name;
         this.setLogLevel(specificLogLevels[name] || defaultLogLevel);
         loggers[name] = this;
@@ -33,9 +37,8 @@ define(function (require) {
     Logger.prototype.setLogLevel = function (level) {
         var scope = this;
         _.each(["error", "warn", "info", "debug", "trace"], function (method) {
-            if (window.console !== "undefined" && levels[method.toLocaleUpperCase()] >= level) {
-                scope[method] = window.console[method]
-                    .bind(window.console, "[" + scope.name + "]");
+            if (typeof console !== "undefined" && levels[method.toLocaleUpperCase()] >= level) {
+                scope[method] = Function.prototype.bind.call(console[method], console, "[" + scope.name + "]");
             } else {
                 scope[method] = noop;
             }

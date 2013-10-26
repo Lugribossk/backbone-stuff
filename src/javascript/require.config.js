@@ -17,7 +17,8 @@ require.config({
 
         test: "../../test/javascript",
         "jasmine-jquery": "../../bower_components/jasmine-jquery/lib/jasmine-jquery",
-        "jasmine-as-promised": "../../bower_components/jasmine-as-promised/src/jasmine-as-promised"
+        "jasmine-as-promised": "../../bower_components/jasmine-as-promised/src/jasmine-as-promised",
+        "es5-shim": "../../bower_components/es5-shim/es5-shim"
     },
     shim: {
         backbone: {
