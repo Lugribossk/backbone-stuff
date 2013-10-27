@@ -28,6 +28,7 @@ define(function (require) {
                         scope.listenTo(scope, "change:" + dep, function () {
                             handleDependencyChange(config, name, scope);
                         });
+                        handleDependencyChange(config, name, scope);
                     });
                 });
             }
@@ -41,7 +42,7 @@ define(function (require) {
 
         toJSON: function (options) {
             var json = Backbone.Model.prototype.toJSON.call(this, options);
-            if (options.sync && this.computed) {
+            if (options && options.sync && this.computed) {
                 _.each(this.computed, function (config, name) {
                     delete json[name];
                 });
