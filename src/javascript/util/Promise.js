@@ -50,7 +50,7 @@ define(function (require) {
      */
     Promise.rejected = function (arg) {
         var deferred = new $.Deferred();
-        return deferred.prototype.reject.apply(deferred, arguments).promise();
+        return deferred.reject.apply(deferred, arguments).promise();
     };
 
     /**
@@ -63,7 +63,7 @@ define(function (require) {
      */
     Promise.resolved = function (arg) {
         var deferred = new $.Deferred();
-        return deferred.prototype.resolve.apply(deferred, arguments).promise();
+        return deferred.resolve.apply(deferred, arguments).promise();
     };
 
 
@@ -89,6 +89,10 @@ define(function (require) {
                 combinedDeferred.notify.call(combinedDeferred, subordinate, numDone / subordinates.length);
             }
         });
+
+        if (numDone > 0) {
+            combinedDeferred.notify(null, numDone / subordinates.length);
+        }
     }
 
     /**
@@ -118,7 +122,7 @@ define(function (require) {
 
         notification(subordinates, combinedDeferred);
 
-        $.when.apply(this, subordinates)
+        $.when.apply(null, subordinates)
             .done(function () {
                 // Return the subordinates' values as one list, instead of as individual arguments.
                 combinedDeferred.resolve(Array.prototype.slice.call(arguments, 0));
@@ -158,7 +162,7 @@ define(function (require) {
             }
         });
 
-        $.when.apply(this, subordinates)
+        $.when.apply(null, subordinates)
             .done(function () {
                 // Return the subordinates as one list, instead of as individual arguments.
                 combinedDeferred.resolve(Array.prototype.filter.call(arguments, function (item) {

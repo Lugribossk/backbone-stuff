@@ -4,7 +4,7 @@ define(function (require) {
     var Logger = require("util/Logger");
 
     describe("Logger", function () {
-        describe("info", function () {
+        describe("info()", function () {
             it("should print name and arguments with console.info by default", function () {
                 spyOn(console, "info");
                 var log = new Logger("test1");
@@ -26,7 +26,7 @@ define(function (require) {
             });
         });
 
-        describe("warn", function () {
+        describe("warn()", function () {
             it("should print name and arguments with console.warn by default", function () {
                 spyOn(console, "warn");
                 var log = new Logger("test3");
@@ -48,7 +48,7 @@ define(function (require) {
             });
         });
 
-        describe("error", function () {
+        describe("error()", function () {
             it("error should print name and arguments with console.error by default", function () {
                 spyOn(console, "error");
                 var log = new Logger("test5");
@@ -70,7 +70,7 @@ define(function (require) {
             });
         });
 
-        describe("debug", function () {
+        describe("debug()", function () {
             it("debug should print name and arguments with console.debug by default", function () {
                 spyOn(console, "debug");
                 var log = new Logger("test7");
@@ -92,7 +92,7 @@ define(function (require) {
             });
         });
 
-        describe("trace", function () {
+        describe("trace()", function () {
             it("should not print anything by default", function () {
                 spyOn(console, "trace");
                 var log = new Logger("test9");
