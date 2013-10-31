@@ -18,5 +18,9 @@
     "jasmine-jquery": "~1.5.92",
     "jasmine-as-promised": "~0.0.5",
     "es5-shim": "~2.1.0"
+  },
+  "resolutions": {
+    "backbone": "~1.1.0",
+    "underscore": "~1.5.1"
   }
 }

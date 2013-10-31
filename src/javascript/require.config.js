@@ -1,5 +1,6 @@
 /*global require*/
 require.config({
+    baseUrl: "javascript",
     paths: {
         backbone: "../../bower_components/backbone/backbone",
         marionette: "../../bower_components/backbone.marionette/lib/backbone.marionette",
