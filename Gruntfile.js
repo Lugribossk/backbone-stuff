@@ -9,5 +9,5 @@ module.exports = function (grunt) {
     require("./grunt/test.js")(grunt);
 
 
-    grunt.registerTask("default", ["jshint"]);
+    grunt.registerTask("default", ["jshint:dev"]);
 };
