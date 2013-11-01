@@ -6,6 +6,10 @@ module.exports = function (grunt) {
      * Tasks for producing the final build output.
      */
 
+    var cssOutput = {
+        "target/styling.css": "src/less/**/*.less"
+    };
+
     grunt.loadNpmTasks("grunt-requirejs");
     grunt.config.set("requirejs", {
         options: {
@@ -22,6 +26,22 @@ module.exports = function (grunt) {
                 name: "blah",
                 out: "target/test.js"
             }
+        }
+    });
+
+    grunt.loadNpmTasks("grunt-contrib-less");
+    grunt.config.set("less", {
+        dev: {
+            options: {
+                compress: false
+            },
+            files: cssOutput
+        },
+        build: {
+            options: {
+                compress: true
+            },
+            files: cssOutput
         }
     });
 
