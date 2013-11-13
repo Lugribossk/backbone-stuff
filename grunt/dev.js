@@ -8,21 +8,19 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.config.set("watch", {
-        watch: {
-            options: {
-                livereload: true
-            },
-            js: {
-                files: ["src/javascript/**/*.js"],
-                tasks: ["jshint:dev"]
-            },
-            less: {
-                files: ["src/less/**/*.less"],
-                tasks: ["less:dev"]
-            },
-            templates: {
-                files: ["src/**/*.html"]
-            }
+        options: {
+            livereload: true
+        },
+        js: {
+            files: ["src/javascript/**/*.js"],
+            tasks: ["jshint:dev"]
+        },
+        less: {
+            files: ["src/less/**/*.less"],
+            tasks: ["less:dev"]
+        },
+        templates: {
+            files: ["src/**/*.html"]
         }
     });
 };

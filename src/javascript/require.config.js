@@ -11,7 +11,10 @@ require.config({
         underscore: "../../bower_components/lodash/dist/lodash",
         Handlebars: "../../bower_components/handlebars/handlebars",
 
+        bootstrap: "../../bower_components/bootstrap/dist/js/bootstrap",
+
         moment: "../../bower_components/moment/moment",
+        md5: "../../bower_components/JavaScript-MD5/js/md5",
 
         text: "../../bower_components/requirejs-text/text",
         hbars: "../../bower_components/requirejs-handlebars/hbars",
@@ -40,6 +43,9 @@ require.config({
         },
         Handlebars: {
             exports: "Handlebars"
+        },
+        bootstrap: {
+            deps: ["jquery"]
         },
 
         "jasmine-jquery": {
