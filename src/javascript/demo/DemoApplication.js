@@ -4,7 +4,7 @@ define(function (require) {
     var _ = require("underscore");
     var Backbone = require("backbone");
     var Marionette = require("marionette");
-    var Logger = require("util/Logger");
+    var Logger = require("tbone/util/Logger");
 
     var app = new Marionette.Application();
 

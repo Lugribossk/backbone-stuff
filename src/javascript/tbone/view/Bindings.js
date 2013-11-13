@@ -15,7 +15,7 @@ define(function (require) {
      *     "#last-edited": BindingUtils.Moment.fromNow("lastEditedDate")
      * }
      *
-     * @class BindingUtils
+     * @class Bindings
      */
     return {
         Moment: {
@@ -62,14 +62,14 @@ define(function (require) {
         },
 
         initialize: function (config) {
-            if (config.BindingUtils) {
-                if (config.BindingUtils.Moment) {
-                    var viewFormat = config.BindingUtils.Moment.viewFormat;
+            if (config.Bindings) {
+                if (config.Bindings.Moment) {
+                    var viewFormat = config.Bindings.Moment.viewFormat;
                     if (viewFormat) {
                         defaultViewFormat = viewFormat;
                     }
 
-                    var modelFormat = config.BindingUtils.Moment.modelFormat;
+                    var modelFormat = config.Bindings.Moment.modelFormat;
                     if (modelFormat) {
                         defaultModelFormat = modelFormat;
                     }

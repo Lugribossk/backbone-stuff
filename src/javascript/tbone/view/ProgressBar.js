@@ -1,7 +1,7 @@
 define(function (require) {
     "use strict";
     var Marionette = require("marionette");
-    var Promise = require("util/Promise");
+    var Promise = require("tbone/util/Promise");
     var template = require("hbars!./ProgressBar");
 
     /**

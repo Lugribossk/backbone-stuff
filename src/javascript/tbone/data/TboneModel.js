@@ -2,7 +2,8 @@ define(function (require) {
     "use strict";
     var _ = require("underscore");
     var Backbone = require("backbone");
-    var Promise = require("util/Promise");
+    var Promise = require("tbone/util/Promise");
+    var Associations = require("associations");
 
     function handleDependencyChange(config, name, scope) {
         // Get each of the required attributes to use as parameters.
@@ -14,7 +15,7 @@ define(function (require) {
         scope.set(name, value);
     }
 
-    return Backbone.Model.extend({
+    return Backbone.AssociatedModel.extend({
         constructor: function () {
             Backbone.Model.prototype.constructor.apply(this, arguments);
             var scope = this;
@@ -37,7 +38,7 @@ define(function (require) {
 
         sync: function (method, model, options) {
             options.sync = true;
-            Backbone.Model.prototype.sync.call(this, method, model, options);
+            Backbone.AssociatedModel.prototype.sync.call(this, method, model, options);
         },
 
         toJSON: function (options) {

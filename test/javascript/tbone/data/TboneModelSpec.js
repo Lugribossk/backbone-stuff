@@ -2,11 +2,11 @@
 define(function (require) {
     "use strict";
     var $ = require("jquery");
-    var BlahModel = require("data/BlahModel");
+    var TboneModel = require("tbone/data/TboneModel");
 
-    describe("BlahModel", function () {
+    describe("TboneModel", function () {
         describe("computed attributes", function () {
-            var ComputedModel = BlahModel.extend({
+            var ComputedModel = TboneModel.extend({
                 computed: {
                     name: {
                         deps: ["firstName", "lastName"],
