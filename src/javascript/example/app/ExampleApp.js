@@ -7,6 +7,7 @@ define(function (require) {
     var Logger = require("tbone/util/Logger");
     var ExampleNavbar = require("example/app/ExampleNavbar");
     var ExampleRouter = require("example/app/ExampleRouter");
+    var ExampleAuthentication = require("example/app/ExampleAuthentication");
 
     var app = new Marionette.Application();
 
@@ -18,18 +19,23 @@ define(function (require) {
     app.addInitializer(Logger.initialize);
 
     app.addInitializer(function () {
-        var currentUser = new Backbone.Model({
+        this.currentUser = new Backbone.Model({
             name: "Test Test",
             email: "example@example.com"
         });
 
-        this.navbar.show(new ExampleNavbar({model: currentUser}));
+        this.navbar.show(new ExampleNavbar({model: this.currentUser}));
     });
 
     app.addInitializer(function () {
+        ExampleAuthentication.initialize();
+
         var router = new ExampleRouter({region: this.content});
 
-        Backbone.history.start();
+        // For some reason History's options go here and not in the constructor.
+        Backbone.history.start({
+            currentUser: this.currentUser
+        });
     });
 
     return app;

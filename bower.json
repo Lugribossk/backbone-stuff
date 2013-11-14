@@ -13,7 +13,9 @@
     "requirejs-text": "~2.0.10",
     "requirejs-handlebars": "https://github.com/jfparadis/requirejs-handlebars.git",
     "moment": "~2.3.1",
-    "JavaScript-MD5": "~1.1.0"
+    "JavaScript-MD5": "~1.1.0",
+    "font-awesome": "~4.0.3",
+    "bootstrap": "~3.0.2"
   },
   "devDependencies": {
     "jasmine-jquery": "~1.5.92",
