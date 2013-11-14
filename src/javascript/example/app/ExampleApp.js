@@ -5,9 +5,11 @@ define(function (require) {
     var Backbone = require("backbone");
     var Marionette = require("marionette");
     var Logger = require("tbone/util/Logger");
-    var ExampleNavbar = require("example/app/ExampleNavbar");
+    var ExampleNavbarController = require("example/navbar/ExampleNavbarController");
     var ExampleRouter = require("example/app/ExampleRouter");
     var ExampleAuthentication = require("example/app/ExampleAuthentication");
+    var User = require("example/user/User");
+    var LoginController = require("example/user/LoginController");
 
     var app = new Marionette.Application();
 
@@ -19,23 +21,29 @@ define(function (require) {
     app.addInitializer(Logger.initialize);
 
     app.addInitializer(function () {
-        this.currentUser = new Backbone.Model({
-            name: "Test Test",
-            email: "example@example.com"
-        });
-
-        this.navbar.show(new ExampleNavbar({model: this.currentUser}));
-    });
-
-    app.addInitializer(function () {
+        this.currentUser = new User();
         ExampleAuthentication.initialize();
 
         var router = new ExampleRouter({region: this.content});
 
-        // For some reason History's options go here and not in the constructor.
-        Backbone.history.start({
+        var loginController = new LoginController({
+            region: this.content,
             currentUser: this.currentUser
         });
+
+        // These are actually options for ExampleAuthentication.
+        Backbone.history.start({
+            currentUser: this.currentUser,
+            controller: loginController
+        });
+    });
+
+    app.addInitializer(function () {
+        var x = new ExampleNavbarController({
+            region: this.navbar,
+            currentUser: this.currentUser
+        });
+        x.showNavbar();
     });
 
     return app;

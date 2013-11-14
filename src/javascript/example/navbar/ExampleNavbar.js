@@ -15,6 +15,13 @@ define(function (require) {
             ".name": "name"
         },
 
+        events: {
+            "click .logout": function () {
+                this.model.logout();
+                return false;
+            }
+        },
+
         onRender: function () {
             this.avatar.show(new Gravatar({model: this.model}));
         }

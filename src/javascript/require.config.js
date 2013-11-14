@@ -15,6 +15,8 @@ require.config({
 
         moment: "../../bower_components/moment/moment",
         md5: "../../bower_components/JavaScript-MD5/js/md5",
+        ladda: "../../bower_components/Ladda/js/ladda",
+        spin: "../../bower_components/Ladda/js/spin",
 
         text: "../../bower_components/requirejs-text/text",
         hbars: "../../bower_components/requirejs-handlebars/hbars",
@@ -51,5 +53,8 @@ require.config({
         "jasmine-jquery": {
             deps: ["jquery"]
         }
+    },
+    hbars: {
+        extension: ".hbs"
     }
 });

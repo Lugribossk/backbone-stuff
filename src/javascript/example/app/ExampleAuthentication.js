@@ -4,12 +4,16 @@ define(function (require) {
     var _ = require("underscore");
     var Backbone = require("backbone");
     var Marionette = require("marionette");
-    var Authentication = require("tbone/Authentication");
+    var PreRouteHistory = require("tbone/PreRouteHistory");
+    var Promise = require("tbone/util/Promise");
 
-    return Authentication.extend({
+    return PreRouteHistory.extend({
         preRoute: function (fragment) {
-            console.log(this.options.currentUser);
-            return true;
+            if (this.options.currentUser.get("isLoggedIn")) {
+                return Promise.resolved();
+            } else {
+                return this.options.controller.attemptLogin();
+            }
         }
     });
 });

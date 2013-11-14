@@ -5,13 +5,14 @@ define(function (require) {
     var Backbone = require("backbone");
     var Marionette = require("marionette");
     var Logger = require("tbone/util/Logger");
+    var Dashboard = require("example/dashboard/Dashboard");
 
     var log = new Logger("ExampleRouter");
 
     return Backbone.Router.extend({
         routes: {
             "": function () {
-
+                this.region.show(new Dashboard({}));
             },
             "*unmatched": function (route) {
                 log.warn("Unmatched route", route);
