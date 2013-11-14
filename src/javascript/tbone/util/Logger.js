@@ -36,8 +36,19 @@ define(function (require) {
 
     Logger.prototype.setLogLevel = function (level) {
         var scope = this;
+        // Add the logging methods if the log level is high enough, otherwise a function that does nothing.
+        // Binding their context to console ensures that they work just like calling directly on console, including correct line number reference.
         _.each(["error", "warn", "info", "debug", "trace"], function (method) {
             if (typeof console !== "undefined" && levels[method.toLocaleUpperCase()] >= level) {
+                scope[method] = Function.prototype.bind.call(console[method], console, "[" + scope.name + "]");
+            } else {
+                scope[method] = noop;
+            }
+        });
+
+        // Add additional fancy (Chrome-only?) console methods.
+        _.each(["group", "groupEnd", "groupCollapsed"], function (method) {
+            if (typeof console !== "undefined" && console[method]) {
                 scope[method] = Function.prototype.bind.call(console[method], console, "[" + scope.name + "]");
             } else {
                 scope[method] = noop;
