@@ -6,6 +6,7 @@ define(function (require) {
     var Marionette = require("marionette");
     var TboneView = require("tbone/TboneView");
     var template = require("hbars!./LoginForm");
+    var Ladda = require("ladda");
 
     return TboneView.extend({
         template: template,
@@ -23,29 +24,29 @@ define(function (require) {
 
         bindings: {
             "#username": "username",
-            "#password": "password"/*,
+            "#password": "password",
             "button[type=submit]": {
-                attributes: [{
-                    observe: ["username", "password"],
-                    name: "disabled",
-                    onGet: function (values) {
-                        return "" + !!(values[0] && values[1]);
-                    }
-                }]
-            }*/
+                observe: ["username", "password"],
+                update: function (el, values) {
+                    el.prop("disabled", !(values[0] && values[1]));
+                }
+            }
         },
 
         events: {
             "submit": function () {
                 var scope = this;
                 scope.ui.warning.hide();
+                // TODO why does this work here but not in onRender?
+                var button = Ladda.create(this.ui.submit.get(0));
+                button.start();
 
                 this.controller.tryCredentials(this.model.get("username"), this.model.get("password"))
                     .fail(function () {
                         scope.ui.warning.show();
                     })
                     .always(function () {
-
+                        button.stop();
                     });
 
                 return false;

@@ -23,13 +23,17 @@ define(function (require) {
         }
     }, {
         fetchByLogin: function (username, password) {
-            var ThisClass = this;
-            var model = new ThisClass({
-                name: "Test Test",
-                email: "example@example.com"
-            });
+            if (username === "test" && password === "test") {
+                var ThisClass = this;
+                var model = new ThisClass({
+                    name: "Test Test",
+                    email: "example@example.com"
+                });
 
-            return Promise.resolved(model);
+                return Promise.delayResolved(1000, model);
+            } else {
+                return Promise.delayRejected(1000);
+            }
         }
     });
 });

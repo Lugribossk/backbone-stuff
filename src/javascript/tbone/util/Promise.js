@@ -95,6 +95,30 @@ define(function (require) {
         }
     }
 
+    function delay(method, milliseconds, resolveWith, progressEvents) {
+        var deferred = new $.Deferred();
+        progressEvents = progressEvents || 0;
+
+        if (progressEvents === 0) {
+            setTimeout(function () {
+                deferred[method](resolveWith);
+            }, milliseconds);
+        } else {
+            var i = 0;
+
+            var handle = setInterval(function () {
+                i++;
+                deferred.notify(i / progressEvents);
+                if (i === progressEvents) {
+                    clearInterval(handle);
+                    deferred[method](resolveWith);
+                }
+            }, milliseconds / progressEvents);
+        }
+
+        return deferred.promise();
+    }
+
     /**
      * An improved version of $.when() that returns the values as a single list.
      *
@@ -180,31 +204,16 @@ define(function (require) {
      * @static
      *
      * @param {Number} milliseconds
+     * @param {*} [resolveWith]
      * @param {Number} [progressEvents=0] Fire this number of progress evens in total over the duration of the
      * @returns {Promise}
      */
-    Promise.delay = function (milliseconds, progressEvents) {
-        var deferred = new $.Deferred();
-        progressEvents = progressEvents || 0;
+    Promise.delayResolved = function (milliseconds, resolveWith, progressEvents) {
+        return delay("resolve", milliseconds, resolveWith, progressEvents);
+    };
 
-        if (progressEvents === 0) {
-            setTimeout(function () {
-                deferred.resolve();
-            }, milliseconds);
-        } else {
-            var i = 0;
-
-            var handle = setInterval(function () {
-                i++;
-                deferred.notify(i / progressEvents);
-                if (i === progressEvents) {
-                    clearInterval(handle);
-                    deferred.resolve();
-                }
-            }, milliseconds / progressEvents);
-        }
-
-        return deferred.promise();
+    Promise.delayRejected = function (milliseconds, rejectWith, progressEvents) {
+        return delay("reject", milliseconds, rejectWith, progressEvents);
     };
 
     /**
