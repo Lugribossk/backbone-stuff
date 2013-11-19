@@ -7,7 +7,7 @@ define(function (require) {
     var ListCollection = require("tbone/collection/ListCollection");
 
     describe("ListCollection", function () {
-        it("at() should have items rather than models", function () {
+        it("at() should return items rather than models", function () {
             var col = new ListCollection(["a", "b", "c"]);
 
             expect(col.at(0)).toBe("a");
@@ -15,7 +15,7 @@ define(function (require) {
             expect(col.at(2)).toBe("c");
         });
 
-        it("toJSON() should have item rather than models", function () {
+        it("toJSON() should have items rather than models", function () {
             var col = new ListCollection(["a", "b", "c"]);
 
             expect(col.toJSON()).toEqual(["a", "b", "c"]);
@@ -24,7 +24,7 @@ define(function (require) {
         describe("usage in CollectionView", function () {
             var dom = TestUtils.createTestDom();
 
-            it("should work as expected with Handlebars {{this}}", function () {
+            it("should have items rather than models as Handlebars {{this}} in item views", function () {
                 var TestItemView = Marionette.ItemView.extend({
                     template: Handlebars.compile("<span>{{this}}</span>"),
                     tagName: "li"
