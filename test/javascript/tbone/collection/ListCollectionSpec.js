@@ -7,26 +7,20 @@ define(function (require) {
     var ListCollection = require("tbone/collection/ListCollection");
 
     describe("ListCollection", function () {
-        it("at() should return items rather than models", function () {
+        it("should create models for the list input", function () {
             var col = new ListCollection(["a", "b", "c"]);
 
-            expect(col.at(0)).toBe("a");
-            expect(col.at(1)).toBe("b");
-            expect(col.at(2)).toBe("c");
+            expect(col.at(0).get("value")).toBe("a");
+            expect(col.at(1).get("value")).toBe("b");
+            expect(col.at(2).get("value")).toBe("c");
         });
 
-        it("toJSON() should have items rather than models", function () {
-            var col = new ListCollection(["a", "b", "c"]);
-
-            expect(col.toJSON()).toEqual(["a", "b", "c"]);
-        });
-
-        describe("usage in CollectionView", function () {
+        describe("usage in views", function () {
             var dom = TestUtils.createTestDom();
 
-            it("should have items rather than models as Handlebars {{this}} in item views", function () {
+            it("should work with Handelbars templates", function () {
                 var TestItemView = Marionette.ItemView.extend({
-                    template: Handlebars.compile("<span>{{this}}</span>"),
+                    template: Handlebars.compile("<span>{{this.value}}</span>"),
                     tagName: "li"
                 });
                 var TestCollectionView = Marionette.CollectionView.extend({
@@ -39,6 +33,28 @@ define(function (require) {
                 dom.show(view);
 
                 expect(dom.el.html()).toBe("<ul><li><span>a</span></li><li><span>b</span></li><li><span>c</span></li></ul>");
+            });
+
+            it("should allow template helpers", function () {
+                var TestItemView = Marionette.ItemView.extend({
+                    template: Handlebars.compile("<span>{{this.value}}{{isA this}}</span>"),
+                    tagName: "li",
+                    templateHelpers: {
+                        isA: function () {
+                            return this.value === "a" ? " is A" : "";
+                        }
+                    }
+                });
+                var TestCollectionView = Marionette.CollectionView.extend({
+                    itemView: TestItemView,
+                    tagName: "ul"
+                });
+                var col = new ListCollection(["a", "b", "c"]);
+
+                var view = new TestCollectionView({collection: col});
+                dom.show(view);
+
+                expect(dom.el.html()).toBe("<ul><li><span>a is A</span></li><li><span>b</span></li><li><span>c</span></li></ul>");
             });
         });
 

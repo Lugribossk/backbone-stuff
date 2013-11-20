@@ -8,10 +8,6 @@ define(function (require) {
             Backbone.Model.prototype.constructor.call(this, {
                 value: item
             }, options);
-        },
-
-        toJSON: function () {
-            return this.get("value");
         }
     });
 
@@ -25,10 +21,6 @@ define(function (require) {
             Backbone.Collection.prototype.constructor.call(this, _.map(list, function (item) {
                 return new ListItemModel(item, options);
             }), options);
-        },
-
-        at: function (index) {
-            return this.models[index].get("value");
         }
     });
 });
