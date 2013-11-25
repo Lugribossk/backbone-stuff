@@ -14,6 +14,12 @@ define(function (require) {
             "": function () {
                 this.region.show(new Dashboard({}));
             },
+            "test1": function () {
+
+            },
+            "test2/:id": function (id) {
+
+            },
             "*unmatched": function (route) {
                 log.warn("Unmatched route", route);
                 Backbone.history.navigate("", true);

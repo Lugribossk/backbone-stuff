@@ -17,13 +17,13 @@ define(function (require) {
             isLoggedIn: {
                 deps: ["email"],
                 value: function (email) {
-                    return true;//!!email;
+                    return !!email;
                 }
             }
         }
     }, {
         fetchByLogin: function (username, password) {
-            if (username === "test" && password === "test") {
+            if (true/*username === "test" && password === "test"*/) {
                 var ThisClass = this;
                 var model = new ThisClass({
                     name: "Test Test",

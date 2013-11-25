@@ -15,7 +15,8 @@ define(function (require) {
 
             var links = {};
 
-            function blah(router, route) {
+            function markLink() {
+                var route = Backbone.history.fragment;
                 _.each(links, function (element, link) {
                     var isDefault = route === "" && link === "#";
                     var isSubpath = route.length >= link.length && route.substring(0, link.length) === link;
@@ -29,15 +30,16 @@ define(function (require) {
 
             this.listenTo(this, "render", function () {
                 _.each(this.ui.itemLinks, function (element) {
-                    var href = $(element).attr("href");
+                    var el = $(element);
+                    var href = el.attr("href");
                     if (href && href.indexOf("#") === 0) {
-                        links[href.substring(1)] = $(element);
+                        links[href.substring(1)] = el;
                     }
                 });
-                blah(null, Backbone.history.fragment);
+                markLink();
             });
 
-            this.listenTo(Backbone.history, "route", blah);
+            this.listenTo(Backbone.history, "route", markLink);
         },
 
         tagName: "nav",
