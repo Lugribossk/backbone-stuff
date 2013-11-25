@@ -9,15 +9,15 @@ define(function (require) {
 
     return TboneModel.extend({
         defaults: {
-            email: "",
-            name: ""
+            name: "Test Test",
+            email: "example@example.com"
         },
 
         computed: {
             isLoggedIn: {
                 deps: ["email"],
                 value: function (email) {
-                    return !!email;
+                    return true;//!!email;
                 }
             }
         }

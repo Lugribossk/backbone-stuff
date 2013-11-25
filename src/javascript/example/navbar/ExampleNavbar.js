@@ -1,8 +1,8 @@
 define(function (require) {
     "use strict";
-    var Navbar = require("tbone/bootstrap/Navbar");
+    var Navbar = require("tbone/ui/bootstrap/Navbar");
     var template = require("hbars!./ExampleNavbar");
-    var Gravatar = require("tbone/bootstrap/Gravatar");
+    var Gravatar = require("tbone/ui/Gravatar");
 
     return Navbar.extend({
         template: template,
