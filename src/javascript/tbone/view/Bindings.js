@@ -5,20 +5,20 @@ define(function (require) {
     var moment = require("moment");
 
     var defaultViewFormat = "YYYY-MM-DD";
-    var defaultModelFormat;
+    var defaultModelFormat = "YYYY-MM-DD";
 
     /**
      * Utilities for generating Stickit bindings.
      *
      * Example:
      * bindings: {
-     *     "#last-edited": BindingUtils.Moment.fromNow("lastEditedDate")
+     *     "#last-edited": Bindings.Date.fromNow("lastEditedDate")
      * }
      *
      * @class Bindings
      */
     return {
-        Moment: {
+        Date: {
             format: function (name, viewFormat, modelFormat) {
                 viewFormat = viewFormat || defaultViewFormat;
                 modelFormat = modelFormat || defaultModelFormat;
@@ -63,13 +63,13 @@ define(function (require) {
 
         initialize: function (config) {
             if (config.Bindings) {
-                if (config.Bindings.Moment) {
-                    var viewFormat = config.Bindings.Moment.viewFormat;
+                if (config.Bindings.Date) {
+                    var viewFormat = config.Bindings.Date.viewFormat;
                     if (viewFormat) {
                         defaultViewFormat = viewFormat;
                     }
 
-                    var modelFormat = config.Bindings.Moment.modelFormat;
+                    var modelFormat = config.Bindings.Date.modelFormat;
                     if (modelFormat) {
                         defaultModelFormat = modelFormat;
                     }

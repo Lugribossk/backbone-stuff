@@ -20,9 +20,9 @@ define(function (require) {
                 controller: this
             }));
 
-            this.loginSuccess = new $.Deferred();
+            this._loginSuccess = new $.Deferred();
 
-            return this.loginSuccess.promise();
+            return this._loginSuccess.promise();
         },
 
         tryCredentials: function (username, password) {
@@ -30,11 +30,13 @@ define(function (require) {
             return User.fetchByLogin(username, password)
                 .done(function (user) {
                     log.info("Logged in as", user.get("email"));
+                    scope.options.currentUser.clear();
                     scope.options.currentUser.set(user.attributes);
-                    scope.loginSuccess.resolve();
+                    scope._loginSuccess.resolve();
                 })
                 .fail(function () {
                     log.info("Login failed with username", username);
+                    scope._loginSuccess.reject();
                 });
         },
 
