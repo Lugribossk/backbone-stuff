@@ -3,6 +3,7 @@ define(function (require) {
     var Navbar = require("tbone/ui/bootstrap/Navbar");
     var template = require("hbars!./ExampleNavbar");
     var Gravatar = require("tbone/ui/Gravatar");
+    require("less!./ExampleNavbar");
 
     return Navbar.extend({
         template: template,

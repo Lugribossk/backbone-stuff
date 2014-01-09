@@ -15,10 +15,6 @@ module.exports = function (grunt) {
             files: ["src/javascript/**/*.js"],
             tasks: ["jshint:dev"]
         },
-        less: {
-            files: ["src/less/**/*.less"],
-            tasks: ["less:dev"]
-        },
         templates: {
             files: ["src/**/*.html"]
         }

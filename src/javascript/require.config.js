@@ -21,6 +21,9 @@ require.config({
         text: "../../bower_components/requirejs-text/text",
         hbars: "../../bower_components/requirejs-handlebars/hbars",
         less: "../../bower_components/require-less/less",
+        lessc: "../../bower_components/require-less/lessc",
+        normalize: "../../bower_components/require-less/normalize",
+        "less-builder": "../../bower_components/require-less/less-builder",
 
         test: "../../test/javascript",
         "jasmine-jquery": "../../bower_components/jasmine-jquery/lib/jasmine-jquery",

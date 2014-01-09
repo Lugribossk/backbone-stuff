@@ -10,6 +10,7 @@ define(function (require) {
     var ExampleAuthentication = require("example/app/ExampleAuthentication");
     var User = require("example/user/User");
     var LoginController = require("example/user/LoginController");
+    require("less!./ExampleApp");
 
     var app = new Marionette.Application();
 
