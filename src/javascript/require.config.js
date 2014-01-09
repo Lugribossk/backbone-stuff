@@ -20,6 +20,7 @@ require.config({
 
         text: "../../bower_components/requirejs-text/text",
         hbars: "../../bower_components/requirejs-handlebars/hbars",
+        less: "../../bower_components/require-less/less",
 
         test: "../../test/javascript",
         "jasmine-jquery": "../../bower_components/jasmine-jquery/lib/jasmine-jquery",

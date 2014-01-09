@@ -16,7 +16,8 @@
     "JavaScript-MD5": "~1.1.0",
     "font-awesome": "~4.0.3",
     "bootstrap": "~3.0.2",
-    "Ladda": "~0.9.0"
+    "Ladda": "~0.9.0",
+    "require-less": "~0.1.1"
   },
   "devDependencies": {
     "jasmine-jquery": "~1.5.92",
